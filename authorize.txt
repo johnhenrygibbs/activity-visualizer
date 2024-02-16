@@ -1,17 +1,21 @@
 In order to list athlete activities, entity (activity) must be referenced before access level (read_all).
 
-Pasting Client ID into the URL below:
+1. Pasting Client ID into the URL below:
 
 http://www.strava.com/oauth/authorize?client_id=[REPLACE_WITH_YOUR_CLIENT_ID]&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=activity:read_all
 
-The URL below shows the authorization code:
+2. The URL below shows the authorization code:
 
-http://localhost/exchange_token?state=&code=37a18e66241942ddf09973a408d4fb764571b4d4&scope=read,activity:read_all
+http://localhost/exchange_token?state=&code=b195ccb8956add9286ecf5eb001ef37d30402197&scope=read,activity:read_all
 
-Exchange the authorization code for access and refresh tokens via POST request via Postman:
+3. Exchange the authorization code for access and refresh tokens via POST request via Postman:
 
 https://www.strava.com/oauth/token?client_id=YOURCLIENTID&client_secret=YOURCLIENTSECRET&code=AUTHORIZATIONCODE&grant_type=authorization_code
 
-View your activities using the access token received:
+4. View your activities using the access token received:
 
 https://www.strava.com/api/v3/athlete/activities?access_token=fa96ccecdf6158f2ada8393c0542c4e8459b5d05
+
+5. Use the refresh token generated to get new access token:
+
+https://www.strava.com/oauth/token?client_id=YOURCLIENTID&client_secret=YOURCLIENTSECRET&refresh_token=AUTHORIZATIONCODE&grant_type=refresh_token
