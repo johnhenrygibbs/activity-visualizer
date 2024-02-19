@@ -5,7 +5,17 @@ function getActivities(res) {
     const activities_link = `https://www.strava.com/api/v3/athlete/activities?access_token=${res.access_token}`;
 
     fetch(activities_link)
-        .then((res) => console.log(res.json()));
+        .then((res) => console.log(res.json()))
+        .then(function(data) {
+
+            var map = L.map('map').setView([51.505, -0.09], 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+        });
 
 }
 
