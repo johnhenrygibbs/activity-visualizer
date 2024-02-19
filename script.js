@@ -1,27 +1,37 @@
-const auth_link = "https://www.strava.com/oauth/token";
+const authLink = "https://www.strava.com/oauth/token";
 
 function getActivities(res) {
 
     const activities_link = `https://www.strava.com/api/v3/athlete/activities?access_token=${res.access_token}`;
 
     fetch(activities_link)
-        .then((res) => console.log(res.json()))
-        .then(function(data) {
+    .then((res) => console.log(res.json()))
+    .then(function (data) {
 
-            var map = L.map('map').setView([51.505, -0.09], 13);
+        var map = L.map('map').setView([51.505, -0.09], 13);
 
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
 
-        });
+        }).addTo(map);
+
+        console.log(data);
+
+        for (var i = 0; i < data.length; i++) {
+
+            console.log(data[i]);
+
+        }
+
+    });
 
 }
 
 function reAuthorize() {
 
-    fetch(auth_link, {
+    fetch(authLink, {
         method: "post",
         headers: {
             "Accept": "application/json, text/plain, */*",
