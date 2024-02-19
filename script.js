@@ -5,10 +5,10 @@ function getActivities(res) {
     const activities_link = `https://www.strava.com/api/v3/athlete/activities?access_token=${res.access_token}`;
 
     fetch(activities_link)
-    .then((res) => console.log(res.json()))
+    .then((res) => res.json())
     .then(function (data) {
 
-        var map = L.map('map').setView([51.505, -0.09], 13);
+        var map = L.map('map').setView([45.523064, -122.676483], 12);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
@@ -17,11 +17,26 @@ function getActivities(res) {
 
         }).addTo(map);
 
-        console.log(data);
-
         for (var i = 0; i < data.length; i++) {
 
-            console.log(data[i]);
+            console.log();
+            let coordinates = L.Polyline.fromEncoded(data[i].map.summary_polyline).getLatLngs();
+            console.log(coordinates);
+
+            L.polyline(
+
+                coordinates,
+
+                {
+
+                    color: "green",
+                    weight: 5,
+                    opacity: .7,
+                    lineJoin: "round"
+
+                }
+
+            ).addTo(map)
 
         }
 
