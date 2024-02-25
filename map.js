@@ -1,4 +1,5 @@
 const authLink = "https://www.strava.com/oauth/token";
+const dates = [];
 
 function getActivities(res) {
 
@@ -19,9 +20,9 @@ function getActivities(res) {
 
         for (var i = 0; i < data.length; i++) {
 
-            console.log();
             let coordinates = L.Polyline.fromEncoded(data[i].map.summary_polyline).getLatLngs();
             console.log(coordinates);
+            dates.push(data[i].start_date.slice(0, 10));
 
             L.polyline(
 
@@ -62,3 +63,7 @@ function reAuthorize() {
 }
 
 reAuthorize();
+
+// console.log(dates);
+
+export {dates}
