@@ -64,6 +64,6 @@ function reAuthorize() {
 
 reAuthorize();
 
-// console.log(dates);
+console.log(dates);
 
 export {dates}

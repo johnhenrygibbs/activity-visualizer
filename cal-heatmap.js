@@ -1,12 +1,14 @@
 import {dates} from "/map.js";
 
 console.log(dates);
-console.log(typeof(dates));
+// console.log(JSON.stringify(dates));
+// console.log(dates.length);
+
 const thisData = [];
 
-for (const item in dates) {
+for (let i = 0; i < dates.length; i++) {
 
-    console.log(item);
+    console.log(dates[i]);
 
 }
 
